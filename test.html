@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <script>
+      var isMSP = false;
+    </script>
+
+    <!-- CWF START -->
+
+    <script
+      type="text/javascript"
+      src="/scripts/ClientLogger.js?11000"
+    ></script>
+
+    <script>
+      var curLevStr = "null";
+      //Level.INFO is stored as default..
+      var curLev = 800;
+
+      var levelVals = [
+        { NAME: "FINEST", VALUE: 300 },
+        { NAME: "FINER", VALUE: 400 },
+        { NAME: "FINE", VALUE: 500 },
+        { NAME: "CONFIG", VALUE: 700 },
+        { NAME: "INFO", VALUE: 800 },
+        { NAME: "WARNING", VALUE: 900 },
+        { NAME: "SEVERE", VALUE: 1000 },
+        { NAME: "ALL", VALUE: 1200 }
+      ]; //no i18n
+      var len = levelVals.length;
+
+      var Level = {
+        FINEST: "300",
+        FINER: "400",
+        FINE: "500",
+        CONFIG: "700",
+        INFO: "800",
+        WARNING: "900",
+        SEVERE: "1000",
+        ALL: "1200"
+      };
+      for (k = 0; k < len; k++) {
+        var obj = levelVals[k];
+        if (curLevStr == obj.NAME) {
+          curLev = obj.VALUE;
+          break;
+        }
+      }
+      var userID = null;
+    </script>
+
+    <!-- CWF END -->
+
+    <script>
+      window.date_format = "YYYY-MM-DD"; //NO I18N <!-- NO OUTPUTENCODING -->
+      /***********************************************
+       * AnyLink Drop Down Menu- � Dynamic Drive (www.dynamicdrive.com)
+       * This notice MUST stay intact for legal use
+       * Visit http://www.dynamicdrive.com/ for full source code
+       ***********************************************/
+      if (!parent.fromIframe) {
+        var fromIframe = "false";
+      }
+      var isNewpage = "false"; //No I18N
+      var enableEncoding = true;
+      if ("null" == "false" || "null" == "no") {
+        enableEncoding = false;
+      }
+
+      var fromIframeAttr = null;
+
+      if (fromIframeAttr != null && fromIframeAttr == true) {
+        fromIframe = true;
+      }
+
+      function isNewUIPage() {
+        var newUIpage = false;
+        var pageURL = document.URL;
+        if (
+          pageURL.indexOf("/BarcodeScanAction.do") > -1 ||
+          isNewpage.indexOf("true") > -1
+        ) {
+          newUIpage = true;
+        }
+        return newUIpage;
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="/scripts/IncludeSDPScripts.js?build=11000"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/components/javascript/Utils.js?build=11000"
+    ></script>
+    <script>
+      parent.sdp_user = JSON.parse(
+        "\x7B\x22LOCALE\x22\x3A\x22en_US\x22,\x22TOURS_TOLOAD\x22\x3A\x5B\x5D,\x22ROLES\x22\x3A\x5B\x5D,\x22KB_SHORTCUTS\x22\x3Afalse,\x22USERTIMEZONECODE\x22\x3A\x22Asia\x2FKolkata\x22,\x22USERTYPE\x22\x3A\x22Requester\x22,\x22DIRECTION\x22\x3A\x22LTR\x22,\x22OFFSET\x22\x3A19800000,\x22SERVER_OFFSET\x22\x3A19800000,\x22IS_REQ_PAGE_OPENED\x22\x3A\x22false\x22\x7D"
+      );
+      parent.sdp_app = JSON.parse(
+        "\x7B\x22IS_FLOAT_MENU_ENABLED\x22\x3A\x22true\x22,\x22IS_CHAT_ENABLED\x22\x3Atrue,\x22IS_SITE_CONFIGURE\x22\x3Afalse,\x22CURRENCY_SYMBOL\x22\x3A\x22\x24\x22,\x22IS_CT_EMPTY_CRIT_ALLOWED\x22\x3Afalse,\x22IS_SDP\x22\x3Atrue,\x22IS_SDP_CHAT_ENABLED\x22\x3Atrue,\x22IS_CMDB_ENABLED\x22\x3Atrue,\x22CSS_TYPE\x22\x3A\x22Default\x22,\x22IS_DEMO_BUILD\x22\x3Afalse,\x22IS_LDAP_DOMAINBOX_ENABLED\x22\x3Afalse,\x22IS_MSP\x22\x3Afalse,\x22IS_TECH_SPACE_ENABLED\x22\x3Atrue,\x22IS_SDP_EXT_CHAT_ENABLED\x22\x3Afalse,\x22WEEK_START_DAY\x22\x3A0,\x22MAX_FILE_SIZE\x22\x3A\x2210\x22,\x22IS_PAGE_NOTIFICATIONS_ENABLED\x22\x3Atrue,\x22PRODUCT_NAME\x22\x3A\x22ManageEngine\x20ServiceDesk\x20Plus\x22,\x22CLIENT_CONF\x22\x3A\x7B\x22user_search_options\x22\x3A\x5B\x22name\x22\x5D,\x22RTA\x22\x3A\x7B\x22fontFamily\x22\x3A\x22Roboto,Verdana\x22,\x22edithtml\x22\x3A\x22true\x22,\x22fontSize\x22\x3A\x2210\x22,\x22fontColor\x22\x3A\x22000\x22\x7D\x7D,\x22IS_AUTO_REQ_CREATE_ENABLED\x22\x3Afalse,\x22IS_REQUESTER_FN_MN_ENABLED\x22\x3Atrue,\x22IS_REBRANDED\x22\x3Afalse,\x22BUILD_NUMBER\x22\x3A\x2211000\x22,\x22IS_NEW_REQ_CHAT_ENABLED\x22\x3Atrue,\x22MAX_FILE_ATTACHMENT_SIZE_IN_MB\x22\x3A10\x7D"
+      );
+      var isCMDB = "false";
+      if (typeof Ember === "undefined") {
+        includeSDPStyle(
+          "",
+          parent.sdp_user.LOCALE,
+          parent.sdp_app.BUILD_NUMBER,
+          parent.sdp_user.DIRECTION
+        );
+        includeSDPScripts(
+          "",
+          true,
+          parent.sdp_app.BUILD_NUMBER,
+          parent.sdp_user.LOCALE
+        );
+      }
+    </script>
+
+    <script>
+      if (window.jQuery) {
+        jQuery.fn.formToJSON = function() {
+          var jsonObject = {};
+          var elementArray = this.serializeArray();
+          jQuery.each(elementArray, function() {
+            if (jsonObject[this.name] !== undefined) {
+              if (!jsonObject[this.name].push) {
+                jsonObject[this.name] = [jsonObject[this.name]];
+              }
+              jsonObject[this.name].push(this.value || "");
+            } else {
+              jsonObject[this.name] = this.value || "";
+            }
+          });
+          return jsonObject;
+        };
+
+        jQuery.fn.sortSelectBox = function() {
+          var defaultText = jQuery(
+            "#" + this.attr("id") + " option[value='-1']"
+          ).text(); //NO I18N
+          var siteText = jQuery(
+            "#" + this.attr("id") + " option[value='']"
+          ).text(); //NO I18N
+          if (defaultText != "") {
+            jQuery("#" + this.attr("id") + " option[value='-1']").remove(); //NO I18N
+          }
+          if (siteText != "") {
+            jQuery("#" + this.attr("id") + " option[value='']").remove(); //NO I18N
+          }
+          var sorted_options = jQuery("#" + this.attr("id") + " option"); //NO I18N
+          // sort alphabetically
+          sorted_options.sort(function(a, b) {
+            var aText = a.text.toLowerCase();
+            var bText = b.text.toLowerCase();
+            return aText > bText ? 1 : aText < bText ? -1 : 0;
+          });
+          jQuery("#" + this.attr("id"))
+            .find("option")
+            .remove(); //NO I18N
+          if (siteText != "") {
+            jQuery("#" + this.attr("id")).append(
+              '<option value="">' + siteText + "</option>"
+            ); //NO I18N
+          }
+          if (defaultText != "") {
+            jQuery("#" + this.attr("id")).append(
+              '<option value="-1">' + defaultText + "</option>"
+            ); //NO I18N
+          }
+          jQuery(this).append(sorted_options);
+          jQuery("#" + this.attr("id")).val(
+            jQuery("#" + this.attr("id") + " option:first").val()
+          ); //NO I18N
+        };
+      }
+      var forwardfrom = ""; //NO I18N
+      var isMDHSetup = "false"; //NO I18N
+      var isIThelpdesk = "true"; //NO I18N
+    </script>
+
+    <script
+      type="text/javascript"
+      src="/scripts/dcIntegrationUtils.js?build=11000"
+    ></script>
+
+    <script>
+      var isListenerAdded =
+        isListenerAdded !== undefined ? isListenerAdded : false;
+
+      var PORTALID = PORTALID !== undefined ? PORTALID : 1;
+
+      var contextPath = "";
+      var userLoggedIn = false;
+
+      if (
+        !false &&
+        !isListenerAdded &&
+        (contextPath !== "/mc" || userLoggedIn) &&
+        typeof jQuery != "undefined" &&
+        PORTALID != null
+      ) {
+        isListenerAdded = true;
+
+        window.addEventListener("focus", function(event) {
+          document.cookie = "PORTALID=" + PORTALID + "; path=/"; //No I18N
+        });
+
+        jQuery(function() {
+          jQuery("body").on(
+            "mousedown",
+            "a,button,input[type=button],input[type=submit]",
+            function() {
+              document.cookie = "PORTALID=" + PORTALID + "; path=/"; //No I18N
+            }
+          );
+        });
+      }
+    </script>
+
+    <script langauge="javascript">
+      //window.opener check is for IE case and document.location check is for FF
+      //from iframe jquery not work. need to call parent.jquery.
+      parent.jQuery(document).ready(function() {
+        if (
+          window.opener == null ||
+          window.opener == undefined ||
+          window.opener.document.location == window.document.location
+        ) {
+          parent.jQuery("#backButton").show();
+        } else {
+          parent.jQuery("#backButton").hide();
+        }
+      });
+
+      function redirectToHomePage() {
+        if (window.opener != null && !window.opener.closed) {
+          window.opener.location = "/HomePage.do";
+          window.close();
+        } else {
+          window.open("/HomePage.do", "_self");
+        }
+      }
+      function goToBackPage(pageCount) {
+        if (window.opener != null) {
+          if (!window.opener.closed) {
+            window.opener.location.reload();
+            window.close();
+          } else {
+            window.open("/HomePage.do", "_self");
+          }
+        } else if (pageCount != undefined) {
+          history.go(pageCount);
+        }
+      }
+    </script>
+
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="/style/error-style.css?build=11000"
+    />
+    <!-- NO OUTPUTENCODING -->
+  </head>
+  <body class="error-page">
+    <div class="table-wrap">
+      <div class="table-cell-wrap">
+        <div class="error-content">
+          <!--<div class="error-attention"></div>-->
+          <div class="text-center mt30" style="font-size: 80px">
+            <span
+              aria-hidden="true"
+              class="sdp-glyph sdp-glyph-warning-yellow mt10"
+              ><span class="path1"></span><span class="path2"></span
+            ></span>
+          </div>
+          <!-- NO OUTPUTENCODING -->
+
+          <p class="error-message mt0 pt20" id="messageHolder">
+            You are not authorized to view this page.
+          </p>
+          <p class="error-privilegemessage"></p>
+          <!-- NO OUTPUTENCODING -->
+
+          <div class="error-bottomreturn">
+            <a href="&#x2f;HomePage.do" class="error-returnback">
+              <i></i>
+
+              Go back and try again
+            </a>
+
+            <a href="javascript:redirectToHomePage()" class="error-returnhome">
+              <i></i>Return to home page
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script>
+  //identify request is being loaded inside an iframe
+
+  function inIframe() {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+  }
+
+  if (inIframe()) {
+    var msg = "You\x20are\x20not\x20authorized\x20to\x20view\x20this\x20page.";
+    alert(msg);
+    if (
+      parent.document.getElementById("OperationStatus").innerText ===
+      "Processing"
+    ) {
+      //No I18n
+      parent.showFailureMessageAndClose(msg, 2500);
+    }
+  }
+</script>
