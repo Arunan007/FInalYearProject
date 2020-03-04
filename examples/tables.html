@@ -35,6 +35,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <!--importing External JS-->
   <script src="index.js"></script>
+  <!--importing Bootstrap from CDN -->
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </head>
 
 <body onload="getAllTransactionsPAGE();">
@@ -398,8 +401,8 @@
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <a href="#" class="btn btn-sm btn-neutral">New</a>
-              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
+              <label class="h2 text-white d-inline-block" for="tableThemeMode">Table Theme</label>
+              <input type="checkbox" checked data-toggle="toggle" id="tableThemeMode" data-on="Dark" data-off="Light" data-onstyle="dark" data-style="ios">
             </div>
           </div>
         </div>

@@ -77,6 +77,8 @@ function getAllTransactionsPAGE(){
                         </tr>'
             jQuery('#transactionsTableBody').append($row);
         }      
-
     });
+    if(jQuery('#tableThemeMode')[0].checked){
+        //
+    }
 }
