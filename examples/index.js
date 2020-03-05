@@ -78,7 +78,20 @@ function getAllTransactionsPAGE(){
             jQuery('#transactionsTableBody').append($row);
         }      
     });
-    if(jQuery('#tableThemeMode')[0].checked){
-        //
+}
+function tableToggleDarkOrLightMode(){
+    if(jQuery('#tableThemeMode')[0].checked==false){
+        jQuery('#tableDivCard').addClass('bg-default shadow');
+        jQuery('#tableThemeCardHeader').addClass('bg-transparent');
+        jQuery('#tableThemeCardHeader h3').addClass('text-white');
+        jQuery('#thead-id').removeClass('thead-light').addClass('thead-dark');
+        jQuery('#tableId').addClass('table-dark');
+    }
+    if(jQuery('#tableThemeMode')[0].checked==true){
+        jQuery('#tableDivCard').removeClass('bg-default shadow');
+        jQuery('#tableThemeCardHeader').removeClass('bg-transparent');
+        jQuery('#tableThemeCardHeader h3').removeClass('text-white');
+        jQuery('#thead-id').addClass('thead-light').removeClass('thead-dark');
+        jQuery('#tableId').removeClass('table-dark');
     }
 }
