@@ -21,10 +21,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
   <meta name="author" content="Creative Tim">
-  <!--importing jQuery-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <!--importing External JS-->
-  <script src="index.js"></script>
   <title>Argon Dashboard - Free Dashboard for Bootstrap 4</title>
   <!-- Favicon -->
   <link rel="icon" href="../assets/img/brand/favicon.png" type="image/png">
@@ -33,13 +29,18 @@
   <!-- Icons -->
   <link rel="stylesheet" href="../assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-  <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="../assets/css/argon.css?v=1.2.0" type="text/css">
+  <!--importing jQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <!--importing External JS-->
+  <script src="index.js"></script>
+  <!--importing Bootstrap from CDN -->
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </head>
 
-<body onload="loadDataforDashboard();"> 
-  <!-- Sidenav -->
+<body onload="getAllTransactionsPAGE();">
   <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
@@ -415,87 +416,20 @@
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Products</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                  <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                  <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Default</li>
+                  <li class="breadcrumb-item"><a href="dashboard.html"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="product.html">Products</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Products</li>
                 </ol>
               </nav>
             </div>
             <div class="col-lg-6 col-5 text-right">
-              <a href="#" class="btn btn-sm btn-neutral">New</a>
-              <a href="#" class="btn btn-sm btn-neutral">Filters</a>
-            </div>
-          </div>
-          <!-- Card stats -->
-          <div class="row">
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-muted mb-0">Users</h5>
-                      <span class="h2 font-weight-bold mb-0" id="partcipantsCount">2,356</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
-                        <i class="ni ni-chart-pie-35"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-muted mb-0">Assets</h5>
-                      <span class="h2 font-weight-bold mb-0" id="productCountinDashboard">924</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                        <i class="ni ni-money-coins"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-md-6">
-              <div class="card card-stats">
-                <!-- Card body -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col">
-                      <h5 class="card-title text-muted mb-0">Transactions</h5>
-                      <span class="h2 font-weight-bold mb-0" id="transactionCountinDashboard">49,65%</span>
-                    </div>
-                    <div class="col-auto">
-                      <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
-                        <i class="ni ni-chart-bar-32"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <p class="mt-3 mb-0 text-sm">
-                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                    <span class="text-nowrap">Since last month</span>
-                  </p>
-                </div>
-              </div>
+              <label class="h2 text-white d-inline-block" for="tableThemeMode">Table Theme</label>
+              <span onclick="tableToggleDarkOrLightMode('productsTableDivCard');">
+                <input type="checkbox" data-toggle="toggle" id="tableThemeMode" data-on="Dark" data-off="Light" data-offstyle="white" data-onstyle="dark" data-style="ios">
+              </span>
             </div>
           </div>
         </div>
@@ -504,82 +438,79 @@
     <!-- Page content -->
     <div class="container-fluid mt--6">
       <div class="row">
-        <div class="col-xl-8">
-          <div class="card bg-default">
-            <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h6 class="text-light text-uppercase ls-1 mb-1">Overview</h6>
-                  <h5 class="h3 text-white mb-0">Sales value</h5>
-                </div>
-                <div class="col">
-                  <ul class="nav nav-pills justify-content-end">
-                    <li class="nav-item mr-2 mr-md-0" data-toggle="chart" data-target="#chart-sales-dark" data-update='{"data":{"datasets":[{"data":[50, 10, 20, 30, 15, 40, 20, 60, 60]}]}}' data-prefix="$" data-suffix="k">
-                      <a href="#" class="nav-link py-2 px-3 active" data-toggle="tab">
-                        <span class="d-none d-md-block">Month</span>
-                        <span class="d-md-none">M</span>
-                      </a>
-                    </li>
-                    
-                  </ul>
-                </div>
-              </div>
+        <div class="col">
+          <div class="card" id="productsTableDivCard">
+            <!-- Card header -->
+            <div class="card-header border-0" id="tableThemeCardHeader">
+              <h3 class="mb-0">Products<button id="addNewProductButton" style="margin-left: 20px;" class="btn btn-sm btn-neutral" onclick="showAddProductForm();"><i class="ni ni-fat-add"></i>New Product</button></h3>
             </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <!-- Chart wrapper -->
-                <canvas id="chart-sales-dark" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                  <h5 class="h3 mb-0">Total orders</h5>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <canvas id="chart-bars" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-8">
-          <div class="card">
-            <div class="card-header border-0" style="width: fit-content;">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0">Transactions </h3>
-                <div>
-                <div class="col text-right">
-                  <a class="btn btn-sm btn-primary" href="tables.html">See all</a>
-                </div>
-              </div>
-            </div>
+            <!-- Light table -->
             <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush" >
-                <thead class="thead-light">
+              <table class="table align-items-center table-flush" id="tableId">
+                <thead class="thead-light" id="thead-id">
                   <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Participant</th>
-                    <th scope="col">Timestamp</th>
+                    <th scope="col" class="sort" data-sort="name">Type</th>
+                    <th scope="col" class="sort" data-sort="budget">Participant</th>
+                    <th scope="col" class="sort" data-sort="status">Time</th>
                     <th scope="col">Id</th>
                   </tr>
                 </thead>
-                <tbody id="transactionsTableBody">
-                </tbody>
+                <tbody class="list" id="transactionsTableBody"></tbody>
               </table>
+            </div>
+            </div>
+          <div class="card" style="max-width: 1000px;margin: auto;display: none;" id="addProductForm">
+            <!-- Card header -->
+            <div class="card-header">
+              <h3 class="mb-0">Add Product</h3>
+            </div>
+            <!-- Card body -->
+            <div class="card-body">
+              <form>
+                <div class="form-group row">
+                  <label for="example-text-input" class="col-md-2 col-form-label form-control-label">Product</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="text" placeholder="Enter Unique Product Id" id="addProductIdField">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-search-input" class="col-md-2 col-form-label form-control-label">Product Name</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="text" placeholder="Enter Product Name" id="addProductNameField">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Owner</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="text" placeholder="Owner of the product" id="addProductOwnerField">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Amount</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="number" placeholder="Amount" id="addProductAmountField">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Latitude</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="number" placeholder="Latitude" id="addProductLatitudeField">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Longitude</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="number" placeholder="Longitude" id="addProductLongitudeField">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Description</label>
+                  <div class="col-md-10">
+                    <textarea class="form-control" type="text" placeholder="Description of the product" id="addProductDescriptionField"></textarea>
+                  </div>
+                </div>
+                <button type="button" href="product.html" onclick="addProductFormData()" class="btn btn-primary mt-4" style="float: right;">Add Product</button>
+              </form>
             </div>
           </div>
         </div>
@@ -619,9 +550,6 @@
   <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <!-- Optional JS -->
-  <script src="../assets/vendor/chart.js/dist/Chart.min.js"></script>
-  <script src="../assets/vendor/chart.js/dist/Chart.extension.js"></script>
   <!-- Argon JS -->
   <script src="../assets/js/argon.js?v=1.2.0"></script>
 </body>
