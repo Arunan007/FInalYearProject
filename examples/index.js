@@ -33,7 +33,7 @@ function getMoveProductResponse(){
       });
 }
 function loadDataforDashboard(){
-    $.get(portalUrl+":"+portalPortNumber+"/api/Participants", function(data, status){
+    $.get(portalUrl+":"+portalPortNumber+"/api/Customer", function(data, status){
         // alert("Data: " + data + "\nStatus: " + status);
         jQuery('#partcipantsCount').html(data.length);
       });
@@ -90,6 +90,56 @@ function getAllTransactionsPAGE(){
         }      
     });
 }
+function getAllProducts(){
+    $.get(portalUrl+":"+portalPortNumber+"/api/system/Product", function(data, status){
+        for(var i=0;i<data.length;i++){
+            var proId =  data[i].productId;
+            var proName = data[i].producttype;
+            var amount = data[i].amount;
+            var lati = data[i].latitude;
+            var longi = data[i].longitude;
+            var description = data[i].description;
+            var owner = data[i].owner;
+            var issuer = data[i].issuer;
+            var $row = '<tr>\
+                            <td>'+proId+'</td>\
+                            <td>'+proName+'</td>\
+                            <td>Rs.'+amount+'</td>\
+                            <td>'+lati+'</td>\
+                            <td>'+longi+'</td>\
+                            <td>'+owner+'</td>\
+                            <td>'+issuer+'</td>\
+                            <td>'+description+'</td>\
+                        </tr>'
+            jQuery('#productsTableBody').append($row);
+        }      
+    });
+}
+function getAllParticipants(){
+    $.get(portalUrl+":"+portalPortNumber+"/api/system/Product", function(data, status){
+        for(var i=0;i<data.length;i++){
+            var proId =  data[i].productId;
+            var proName = data[i].producttype;
+            var amount = data[i].amount;
+            var lati = data[i].latitude;
+            var longi = data[i].longitude;
+            var description = data[i].description;
+            var owner = data[i].owner;
+            var issuer = data[i].issuer;
+            var $row = '<tr>\
+                            <td>'+proId+'</td>\
+                            <td>'+proName+'</td>\
+                            <td>Rs.'+amount+'</td>\
+                            <td>'+lati+'</td>\
+                            <td>'+longi+'</td>\
+                            <td>'+owner+'</td>\
+                            <td>'+issuer+'</td>\
+                            <td>'+description+'</td>\
+                        </tr>'
+            jQuery('#productsTableBody').append($row);
+        }      
+    });
+}
 function tableToggleDarkOrLightMode(id){
     if(jQuery('#tableThemeMode')[0].checked==false){
         jQuery('#'+id).addClass('bg-default shadow');
@@ -111,6 +161,10 @@ function showAddProductForm(){
     jQuery('#addProductForm').show();
     getLocation();
 }
+function showAddParticipantForm(){
+    jQuery('#participantTableDivCard').hide();
+    jQuery('#addParticipantForm').show();
+}
 function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
@@ -123,7 +177,9 @@ function showPosition(position) {
     jQuery('#addProductLongitudeField').val(position.coords.longitude);
   }
 function addProductFormData(){
-    var addProductDataJson = {}
+    var addProductDataJson = {
+        "$class" : "org.example.mynetwork.Product"
+    }
     var proId=jQuery('#addProductIdField').val();
     var proName=jQuery('#addProductNameField').val();
     var proOwner=jQuery('#addProductOwnerField').val();
@@ -131,16 +187,54 @@ function addProductFormData(){
     var proAmount=jQuery('#addProductAmountField').val();
     var proLati=jQuery('#addProductLatitudeField').val();
     var proLongi=jQuery('#addProductLongitudeField').val();
-    if(proId != "" && proDesc!= "" && proName!="" &&  proOwner!="" && proAmount!="" && proLati!="" && proLongi!=""){
+    if(proId != "" && proName!="" &&  proOwner!="" && proAmount!="" && proLati!="" && proLongi!="" && proId.trim()!= "" && proName.trim()!="" &&  proOwner.trim()!="" && proAmount.trim()!="" && proLati.trim()!="" && proLongi.trim()!=""){
         addProductDataJson["productId"]=proId;
-        addProductDataJson["productName"]=proName;
-        addProductDataJson["productOwner"]=proOwner;
-        addProductDataJson["productAmount"]=proAmount;
-        addProductDataJson["productLatitude"]=proLati;
-        addProductDataJson["productLongitude"]=proLongi;
-        addProductDataJson["productDesc"]=proDesc;
+        addProductDataJson["producttype"]=proName;
+        addProductDataJson["amount"]=proAmount;
+        addProductDataJson["latitude"]=proLati;
+        addProductDataJson["longitude"]=proLongi;
+        addProductDataJson["owner"]=proOwner;
+        addProductDataJson["issuer"]=" ";
+        addProductDataJson["description"]=proDesc;
+        console.log(addProductDataJson);
+        $.post(portalUrl+":"+portalPortNumber+"/api/Product", addProductDataJson, function(result){
+            alert(result);
+          })
+          .fail(function(){
+              alert("Product Id already Exists!")
+          });
     }
     else{
         alert("Please provide all the input");
+    }   
+}
+function addParticipantFormData(){
+    var addParticipantDataJson = {
+        "$class" : "org.example.mynetwork.Participant"
     }
+    var parEmail = jQuery("#addParticipantEmailField").val();
+    var parFname = jQuery("#addPaticipantFnameField").val();
+    var parLname = jQuery("#addPaticipantLnameField").val();
+    var parDesc = jQuery("#addParticipantDescriptionField").val();
+    if(parEmail != "" && parFname!="" &&  parLname!="" && parEmail.trim()!="" && parFname.trim()!="" && parLname.trim()!=""){
+        var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        if(!regex.test(parEmail)) {
+          alert("Enter the valid Email address");
+        }else{
+            addParticipantDataJson["email"] = parEmail;
+            addParticipantDataJson["firstname"] = parFname;
+            addParticipantDataJson["lastname"] = parLname;
+            addParticipantDataJson["description"] = parDesc;
+            console.log(addParticipantDataJson);
+            $.post(portalUrl+":"+portalPortNumber+"/api/Product", addParticipantDataJson, function(result){
+                alert(result);
+              })
+              .fail(function(){
+                  alert("Email Id already Exists!")
+              });
+        }
+    }
+    else{
+        alert("Please provide all the input");
+    }   
 }

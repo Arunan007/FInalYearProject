@@ -40,7 +40,7 @@
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </head>
 
-<body onload="getAllTransactionsPAGE();">
+<body onload="getAllParticipants();">
   <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
@@ -126,45 +126,6 @@
               <a class="nav-link" href="upgrade.html">
                 <i class="ni ni-send text-dark"></i>
                 <span class="nav-link-text">Upgrade</span>
-              </a>
-            </li>
-          </ul>
-          <!-- Divider -->
-          <hr class="my-3">
-          <!-- Heading -->
-          <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Documentation</span>
-          </h6>
-          <!-- Navigation -->
-          <ul class="navbar-nav mb-md-3">
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
-                <i class="ni ni-spaceship"></i>
-                <span class="nav-link-text">Getting started</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html" target="_blank">
-                <i class="ni ni-palette"></i>
-                <span class="nav-link-text">Foundation</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html" target="_blank">
-                <i class="ni ni-ui-04"></i>
-                <span class="nav-link-text">Components</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/plugins/charts.html" target="_blank">
-                <i class="ni ni-chart-pie-35"></i>
-                <span class="nav-link-text">Plugins</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active active-pro" href="upgrade.html">
-                <i class="ni ni-send text-dark"></i>
-                <span class="nav-link-text">Upgrade to PRO</span>
               </a>
             </li>
           </ul>
@@ -427,7 +388,7 @@
             </div>
             <div class="col-lg-6 col-5 text-right">
               <label class="h2 text-white d-inline-block" for="tableThemeMode">Table Theme</label>
-              <span onclick="tableToggleDarkOrLightMode('productsTableDivCard');">
+              <span onclick="tableToggleDarkOrLightMode('participantTableDivCard');">
                 <input type="checkbox" data-toggle="toggle" id="tableThemeMode" data-on="Dark" data-off="Light" data-offstyle="white" data-onstyle="dark" data-style="ios">
               </span>
             </div>
@@ -439,10 +400,10 @@
     <div class="container-fluid mt--6">
       <div class="row">
         <div class="col">
-          <div class="card" id="productsTableDivCard">
+          <div class="card" id="participantTableDivCard">
             <!-- Card header -->
             <div class="card-header border-0" id="tableThemeCardHeader">
-              <h3 class="mb-0">Participants<button id="addNewProductButton" style="margin-left: 20px;" class="btn btn-sm btn-neutral" onclick="showAddProductForm();"><i class="ni ni-fat-add"></i>New Participant</button></h3>
+              <h3 class="mb-0">Participants<button id="addNewParticipantButton" style="margin-left: 20px;" class="btn btn-sm btn-neutral" onclick="showAddParticipantForm();"><i class="ni ni-fat-add"></i>New Participant</button></h3>
             </div>
             <!-- Light table -->
             <div class="table-responsive">
@@ -455,61 +416,43 @@
                     <th scope="col">Id</th>
                   </tr>
                 </thead>
-                <tbody class="list" id="transactionsTableBody"></tbody>
+                <tbody class="list" id="participantTableBody"></tbody>
               </table>
             </div>
             </div>
-          <div class="card" style="max-width: 1000px;margin: auto;display: none;" id="addProductForm">
+          <div class="card" style="max-width: 1000px;margin: auto;display: none;" id="addParticipantForm">
             <!-- Card header -->
             <div class="card-header">
-              <h3 class="mb-0">Add Product</h3>
+              <h3 class="mb-0">Add Participant</h3>
             </div>
             <!-- Card body -->
             <div class="card-body">
               <form>
                 <div class="form-group row">
-                  <label for="example-text-input" class="col-md-2 col-form-label form-control-label">Product</label>
+                  <label for="example-text-input" class="col-md-2 col-form-label form-control-label">Email</label>
                   <div class="col-md-10">
-                    <input class="form-control" type="text" placeholder="Enter Unique Product Id" id="addProductIdField">
+                    <input class="form-control" type="email" placeholder="ferrytail@tracking.com" id="addParticipantEmailField">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="example-search-input" class="col-md-2 col-form-label form-control-label">Product Name</label>
+                  <label for="example-search-input" class="col-md-2 col-form-label form-control-label">First Name</label>
                   <div class="col-md-10">
-                    <input class="form-control" type="text" placeholder="Enter Product Name" id="addProductNameField">
+                    <input class="form-control" type="text" placeholder="First Name" id="addPaticipantFnameField">
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Owner</label>
+                  <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Last Name</label>
                   <div class="col-md-10">
-                    <input class="form-control" type="text" placeholder="Owner of the product" id="addProductOwnerField">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Amount</label>
-                  <div class="col-md-10">
-                    <input class="form-control" type="number" placeholder="Amount" id="addProductAmountField">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Latitude</label>
-                  <div class="col-md-10">
-                    <input class="form-control" type="number" placeholder="Latitude" id="addProductLatitudeField">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Longitude</label>
-                  <div class="col-md-10">
-                    <input class="form-control" type="number" placeholder="Longitude" id="addProductLongitudeField">
+                    <input class="form-control" type="text" placeholder="Last Name" id="addPaticipantLnameField">
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Description</label>
                   <div class="col-md-10">
-                    <textarea class="form-control" type="text" placeholder="Description of the product" id="addProductDescriptionField"></textarea>
+                    <textarea class="form-control" type="text" placeholder="Description of the participant" id="addParticipantDescriptionField"></textarea>
                   </div>
                 </div>
-                <button type="button" href="product.html" onclick="addProductFormData()" class="btn btn-primary mt-4" style="float: right;">Add Product</button>
+                <button type="button" onclick="addParticipantFormData()" class="btn btn-primary mt-4" style="float: right;">Add Participant</button>
               </form>
             </div>
           </div>

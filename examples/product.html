@@ -40,7 +40,7 @@
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </head>
 
-<body onload="getAllTransactionsPAGE();">
+<body onload="getAllProducts();">
   <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
@@ -126,45 +126,6 @@
               <a class="nav-link" href="upgrade.html">
                 <i class="ni ni-send text-dark"></i>
                 <span class="nav-link-text">Upgrade</span>
-              </a>
-            </li>
-          </ul>
-          <!-- Divider -->
-          <hr class="my-3">
-          <!-- Heading -->
-          <h6 class="navbar-heading p-0 text-muted">
-            <span class="docs-normal">Documentation</span>
-          </h6>
-          <!-- Navigation -->
-          <ul class="navbar-nav mb-md-3">
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
-                <i class="ni ni-spaceship"></i>
-                <span class="nav-link-text">Getting started</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html" target="_blank">
-                <i class="ni ni-palette"></i>
-                <span class="nav-link-text">Foundation</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html" target="_blank">
-                <i class="ni ni-ui-04"></i>
-                <span class="nav-link-text">Components</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/plugins/charts.html" target="_blank">
-                <i class="ni ni-chart-pie-35"></i>
-                <span class="nav-link-text">Plugins</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active active-pro" href="upgrade.html">
-                <i class="ni ni-send text-dark"></i>
-                <span class="nav-link-text">Upgrade to PRO</span>
               </a>
             </li>
           </ul>
@@ -449,13 +410,17 @@
               <table class="table align-items-center table-flush" id="tableId">
                 <thead class="thead-light" id="thead-id">
                   <tr>
-                    <th scope="col" class="sort" data-sort="name">Type</th>
-                    <th scope="col" class="sort" data-sort="budget">Participant</th>
-                    <th scope="col" class="sort" data-sort="status">Time</th>
-                    <th scope="col">Id</th>
+                    <th scope="col" class="sort" data-sort="name">Product Id</th>
+                    <th scope="col" class="sort" data-sort="budget">Product Name</th>
+                    <th scope="col" class="sort" data-sort="status">Amount</th>
+                    <th scope="col" class="sort" data-sort="status">Latitude</th>
+                    <th scope="col" class="sort" data-sort="status">Longitude</th>
+                    <th scope="col" class="sort" data-sort="status">Owner</th>
+                    <th scope="col" class="sort" data-sort="status">Issuer</th>
+                    <th scope="col" class="sort" data-sort="status">Description</th>
                   </tr>
                 </thead>
-                <tbody class="list" id="transactionsTableBody"></tbody>
+                <tbody class="list" id="productsTableBody"></tbody>
               </table>
             </div>
             </div>
