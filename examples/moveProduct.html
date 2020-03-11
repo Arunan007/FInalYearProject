@@ -29,11 +29,8 @@
   <!-- Icons -->
   <link rel="stylesheet" href="../assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="../assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
-  <!-- Page plugins -->
   <!-- Argon CSS -->
   <link rel="stylesheet" href="../assets/css/argon.css?v=1.2.0" type="text/css">
-  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-  <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet"/>
   <!--importing jQuery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <!--importing External JS-->
@@ -43,14 +40,14 @@
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 </head>
 
-<body onload=map(47.50737,19.04611);>
-  <!-- Sidenav -->
+<body>
   <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
         <a class="navbar-brand" href="javascript:void(0)">
-          <img src="../assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
+          <img src="https://static.thenounproject.com/png/1138188-200.png" style="height: 40px;width: 40px;display: inline-block;max-height: none !important;margin-right: 5px;">
+            <h1 style="display: inline-block;vertical-align: sub;">Ferry Tail</h1>
         </a>
       </div>
       <div class="navbar-inner">
@@ -64,6 +61,31 @@
                 <span class="nav-link-text">Dashboard</span>
               </a>
             </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id='productsList' href="product.html">
+              <i class="ni ni-bag-17 text-orange"></i>
+              <span class="nav-link-text">Products</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="participants.html" id="participantsList">
+              <i class="fa fa-users text-info" aria-hidden="true"></i>
+              <span class="nav-link-text">Participants</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="moveProduct.html" id="moveProduct">
+              <i class="ni ni-delivery-fast text-red"></i>
+              <span class="nav-link-text">Move Product</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="transactionsSideTab" href="tables.html">
+              <i class="ni ni-money-coins text-green"></i>
+              <span class="nav-link-text">Transactions</span>
+            </a>
+          </li>
             <li class="nav-item">
               <a class="nav-link" href="icons.html">
                 <i class="ni ni-planet text-orange"></i>
@@ -71,7 +93,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="map.html">
+              <a class="nav-link" href="map.html">
                 <i class="ni ni-pin-3 text-primary"></i>
                 <span class="nav-link-text">Google</span>
               </a>
@@ -117,6 +139,20 @@
     <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
       <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Search form -->
+          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
+            <div class="form-group mb-0">
+              <div class="input-group input-group-alternative input-group-merge">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-search"></i></span>
+                </div>
+                <input class="form-control" placeholder="Search" type="text">
+              </div>
+            </div>
+            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </form>
           <!-- Navbar links -->
           <ul class="navbar-nav align-items-center  ml-md-auto ">
             <li class="nav-item d-xl-none">
@@ -336,30 +372,77 @@
     </nav>
     <!-- Header -->
     <!-- Header -->
-    <div class="header bg-primary pb-6" style="padding-bottom: 10px !important;padding-top: 10px !important;">
+    <div class="header bg-primary pb-6">
       <div class="container-fluid">
         <div class="header-body">
-          <!-- Search form -->
-          <form class="navbar-search navbar-search-light form-inline mr-sm-3" id="navbar-search-main">
-            <div class="form-group mb-0">
-              <div class="input-group input-group-alternative input-group-merge">
-                <input class="form-control" id="productIdForLocation" placeholder="Enter the Product Id" type="text">
-                <div class="input-group-postpend" onclick="loadProductLocation()" style="margin-top: 7px;margin-right: 7px;cursor: pointer;">
-                  <span class="input-group-text"><i class="fas fa-search"></i></span>
-                </div>
-              </div>
+          <div class="row align-items-center py-4">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Move Product</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="dashboard.html"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item"><a href="moveProduct.html">Move Product</a></li>
+                </ol>
+              </nav>
             </div>
-            <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-            <span class="btn btn-sm btn-neutral" id="currentLocationButton" onclick="loadCurentLocationMap();" style="margin-left: 20px;"><i class="ni ni-pin-3 text-primary"></i>Current Location</span>
-          </form>
+          </div>
         </div>
       </div>
     </div>
     <!-- Page content -->
-    <div id="osm-map" style="height: 600px;"></div>
-
+    <div class="container-fluid mt--6">
+      <div class="row">
+        <div class="col">
+          <div class="card" style="max-width: 1000px;margin: auto;" id="addParticipantForm">
+            <!-- Card header -->
+            <div class="card-header">
+              <h3 class="mb-0">Move Product</h3>
+            </div>
+            <!-- Card body -->
+            <div class="card-body">
+                <form>
+                    <div class="form-group row">
+                      <label for="example-text-input" class="col-md-2 col-form-label form-control-label">Product</label>
+                      <div class="col-md-10">
+                        <input class="form-control" type="text" placeholder="Enter Unique Product Id" id="moveProductIdField">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-search-input" class="col-md-2 col-form-label form-control-label">Issuer</label>
+                      <div class="col-md-10">
+                        <input class="form-control" type="text" placeholder="Enter Issuer Name" id="moveProductIssuerField">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-url-input" class="col-md-2 col-form-label form-control-label">New Owner</label>
+                      <div class="col-md-10">
+                        <input class="form-control" type="text" placeholder="Owner of the product" id="moveProductNewOwnerField">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Amount</label>
+                      <div class="col-md-10">
+                        <input class="form-control" type="number" placeholder="Amount" id="moveProductAmountField">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Latitude</label>
+                      <div class="col-md-10">
+                        <input class="form-control" type="number" placeholder="Latitude" id="moveProductLatitudeField">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="example-url-input" class="col-md-2 col-form-label form-control-label">Longitude</label>
+                      <div class="col-md-10">
+                        <input class="form-control" type="number" placeholder="Longitude" id="moveProductLongitudeField">
+                      </div>
+                    </div>
+                    <button type="button" onclick="moveProductFormData()" class="btn btn-primary mt-4" style="float: right;">Move Product</button>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </div>
       <!-- Footer -->
       <footer class="footer pt-0">
         <div class="row align-items-center justify-content-lg-between">
@@ -395,8 +478,6 @@
   <script src="../assets/vendor/js-cookie/js.cookie.js"></script>
   <script src="../assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
-  <!-- Optional JS -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNYlOqvlu05U8Qn5JmKSWy0pw2_x5yU0E"></script>
   <!-- Argon JS -->
   <script src="../assets/js/argon.js?v=1.2.0"></script>
 </body>

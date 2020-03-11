@@ -29840,3 +29840,6 @@ input.datetimepicker[data-color='yellow'] + .bootstrap-datetimepicker-widget.dro
 }
 .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20rem; }
   .toggle.ios .toggle-handle { border-radius: 20rem; }
+#panel{
+    overflow:hidden;
+}
